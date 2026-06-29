@@ -6,7 +6,8 @@
 @use "themecolors/green_theme" as green-t;
 @use "themecolors/cyan_theme" as cyan-t;
 
-@include mat.core();
+@include mat.elevation-classes();
+@include mat.app-background();
 
 @import "variables";
 @import "layouts/transitions";
