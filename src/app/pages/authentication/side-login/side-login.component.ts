@@ -6,10 +6,9 @@ import { MaterialModule } from '../../../material.module';
 import { NgIf } from '@angular/common';
 
 @Component({
-  selector: 'app-side-login',
-  standalone: true,
-  imports: [RouterModule, MaterialModule, FormsModule, ReactiveFormsModule, NgIf],
-  templateUrl: './side-login.component.html',
+    selector: 'app-side-login',
+    imports: [RouterModule, MaterialModule, FormsModule, ReactiveFormsModule, NgIf],
+    templateUrl: './side-login.component.html'
 })
 export class AppSideLoginComponent {
   options = this.settings.getOptions();

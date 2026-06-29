@@ -3,10 +3,9 @@ import { Component } from '@angular/core';
 import { CoreService } from 'src/app/services/core.service';
 
 @Component({
-  selector: 'app-branding',
-  standalone: true,
-  imports: [NgIf],
-  template: `
+    selector: 'app-branding',
+    imports: [NgIf],
+    template: `
     <div class="branding">
       @if(options.theme === 'light') {
       <a href="/">
@@ -26,7 +25,7 @@ import { CoreService } from 'src/app/services/core.service';
       </a>
       }
     </div>
-  `,
+  `
 })
 export class BrandingComponent {
   options = this.settings.getOptions();

@@ -47,11 +47,10 @@ interface quicklinks {
 }
 
 @Component({
-  selector: 'app-header',
-  standalone: true,
-  imports: [RouterModule, CommonModule, NgScrollbarModule, TablerIconsModule, MaterialModule],
-  templateUrl: './header.component.html',
-  encapsulation: ViewEncapsulation.None,
+    selector: 'app-header',
+    imports: [RouterModule, CommonModule, NgScrollbarModule, TablerIconsModule, MaterialModule],
+    templateUrl: './header.component.html',
+    encapsulation: ViewEncapsulation.None
 })
 export class HeaderComponent {
   
@@ -276,16 +275,15 @@ export class HeaderComponent {
 }
 
 @Component({
-  selector: 'search-dialog',
-  standalone: true,
-  imports: [
-    RouterModule,
-    MaterialModule,
-    TablerIconsModule,
-    FormsModule,
-    NgForOf,
-  ],
-  templateUrl: 'search-dialog.component.html',
+    selector: 'search-dialog',
+    imports: [
+        RouterModule,
+        MaterialModule,
+        TablerIconsModule,
+        FormsModule,
+        NgForOf,
+    ],
+    templateUrl: 'search-dialog.component.html'
 })
 export class AppSearchDialogComponent {
   searchText: string = '';
