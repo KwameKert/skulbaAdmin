@@ -1,5 +1,5 @@
-import { Component, ChangeDetectionStrategy, Inject, TemplateRef } from '@angular/core';
-import { DOCUMENT } from '@angular/common';
+import { Component, ChangeDetectionStrategy, Inject, TemplateRef, DOCUMENT } from '@angular/core';
+
 import {
   MatDialog,
   MatDialogRef,
