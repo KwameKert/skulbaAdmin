@@ -9,7 +9,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
-import { AngularEditorModule } from '@kolkov/angular-editor';
+import { QuillModule } from 'ngx-quill';
 import { NgScrollbarModule } from 'ngx-scrollbar';
 
 // icons
@@ -120,7 +120,7 @@ import { AppBlogDetailsComponent } from './blogs/details/details.component';
         TablerIconsModule.pick(TablerIcons),
         DragDropModule,
         NgxPaginationModule,
-        AngularEditorModule,
+        QuillModule.forRoot(),
         CalendarModule.forRoot({
             provide: DateAdapter,
             useFactory: adapterFactory,

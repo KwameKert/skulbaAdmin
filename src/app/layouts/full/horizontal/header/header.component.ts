@@ -12,7 +12,7 @@ import { RouterModule } from '@angular/router';
 import { TablerIconsModule } from 'angular-tabler-icons';
 import { MaterialModule } from 'src/app/material.module';
 import { BrandingComponent } from '../../vertical/sidebar/branding.component';
-import { NgFor, NgForOf } from '@angular/common';
+
 import { FormsModule } from '@angular/forms';
 
 
@@ -47,7 +47,7 @@ interface quicklinks {
 
 @Component({
     selector: 'app-horizontal-header',
-    imports: [RouterModule, TablerIconsModule, MaterialModule, BrandingComponent, NgFor],
+    imports: [RouterModule, TablerIconsModule, MaterialModule, BrandingComponent],
     templateUrl: './header.component.html'
 })
 export class AppHorizontalHeaderComponent {
@@ -274,7 +274,7 @@ export class AppHorizontalHeaderComponent {
 
 @Component({
     selector: 'app-search-dialog',
-    imports: [RouterModule, MaterialModule, TablerIconsModule, FormsModule, NgForOf],
+    imports: [RouterModule, MaterialModule, TablerIconsModule, FormsModule],
     templateUrl: 'search-dialog.component.html'
 })
 export class AppHorizontalSearchDialogComponent {

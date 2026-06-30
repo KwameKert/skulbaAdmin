@@ -10,7 +10,6 @@ import { mailboxList } from '../email-data';
 import { Mailbox } from '../email';
 import { Router } from '@angular/router';
 
-import { AngularEditorConfig } from '@kolkov/angular-editor';
 import {
   UntypedFormBuilder,
   UntypedFormGroup,
@@ -27,37 +26,14 @@ export class ListingDialogDataExampleDialogComponent {
 
   htmlContent1 = '';
 
-  config1: AngularEditorConfig = {
-    editable: true,
-    spellcheck: true,
-    minHeight: '9rem',
-    maxHeight: '20rem',
-    placeholder: 'Enter text here...',
-    translate: 'no',
-    sanitize: false,
-    // toolbarPosition: 'top',
-    outline: true,
-    defaultFontName: 'Comic Sans MS',
-    defaultFontSize: '5',
-    // showToolbar: false,
-    defaultParagraphSeparator: 'p',
-    customClasses: [
-      {
-        name: 'quote',
-        class: 'quote',
-      },
-      {
-        name: 'redText',
-        class: 'redText',
-      },
-      {
-        name: 'titleText',
-        class: 'titleText',
-        tag: 'h1',
-      },
+  quillConfig = {
+    toolbar: [
+      ['bold', 'italic', 'underline', 'strike'],
+      [{ list: 'ordered' }, { list: 'bullet' }],
+      [{ size: ['small', false, 'large', 'huge'] }],
+      ['link', 'image'],
+      ['clean'],
     ],
-    toolbarPosition: 'top',
-    toolbarHiddenButtons: [['bold', 'italic'], ['fontSize']],
   };
 
   constructor(

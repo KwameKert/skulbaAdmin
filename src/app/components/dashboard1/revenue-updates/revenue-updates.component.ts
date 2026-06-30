@@ -17,7 +17,7 @@ import {
 } from 'ng-apexcharts';
 import { MaterialModule } from '../../../material.module';
 import { TablerIconsModule } from 'angular-tabler-icons';
-import { NgForOf } from '@angular/common';
+
 
 interface month {
   value: string;
@@ -41,7 +41,7 @@ export interface revenueChart {
 
 @Component({
     selector: 'app-revenue-updates',
-    imports: [NgApexchartsModule, MaterialModule, TablerIconsModule, NgForOf],
+    imports: [NgApexchartsModule, MaterialModule, TablerIconsModule],
     templateUrl: './revenue-updates.component.html'
 })
 export class AppRevenueUpdatesComponent {

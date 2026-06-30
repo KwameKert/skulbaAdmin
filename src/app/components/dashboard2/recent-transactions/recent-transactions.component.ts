@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { MaterialModule } from '../../../material.module';
-import { NgFor, NgIf } from '@angular/common';
+
 
 interface stats {
   id: number;
@@ -14,7 +14,7 @@ interface stats {
 
 @Component({
     selector: 'app-recent-transactions',
-    imports: [NgApexchartsModule, MaterialModule, NgFor, NgIf],
+    imports: [NgApexchartsModule, MaterialModule],
     templateUrl: './recent-transactions.component.html'
 })
 export class AppRecentTransactionsComponent {

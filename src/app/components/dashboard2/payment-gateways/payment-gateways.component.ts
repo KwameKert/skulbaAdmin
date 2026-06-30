@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { MaterialModule } from '../../../material.module';
-import { NgFor } from '@angular/common';
+
 
 interface stats {
   id: number;
@@ -13,7 +13,7 @@ interface stats {
 
 @Component({
     selector: 'app-payment-gateways',
-    imports: [MaterialModule, NgFor],
+    imports: [MaterialModule],
     templateUrl: './payment-gateways.component.html'
 })
 export class AppPaymentGatewaysComponent {

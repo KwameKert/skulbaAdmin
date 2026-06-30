@@ -12,7 +12,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { TablerIconsModule } from 'angular-tabler-icons';
 import { MaterialModule } from 'src/app/material.module';
 import { RouterModule } from '@angular/router';
-import { CommonModule, NgForOf } from '@angular/common';
+
 import { FormsModule } from '@angular/forms';
 import { NgScrollbarModule } from 'ngx-scrollbar';
 
@@ -48,7 +48,7 @@ interface quicklinks {
 
 @Component({
     selector: 'app-header',
-    imports: [RouterModule, CommonModule, NgScrollbarModule, TablerIconsModule, MaterialModule],
+    imports: [RouterModule, NgScrollbarModule, TablerIconsModule, MaterialModule],
     templateUrl: './header.component.html',
     encapsulation: ViewEncapsulation.None
 })
@@ -277,12 +277,11 @@ export class HeaderComponent {
 @Component({
     selector: 'search-dialog',
     imports: [
-        RouterModule,
-        MaterialModule,
-        TablerIconsModule,
-        FormsModule,
-        NgForOf,
-    ],
+    RouterModule,
+    MaterialModule,
+    TablerIconsModule,
+    FormsModule
+],
     templateUrl: 'search-dialog.component.html'
 })
 export class AppSearchDialogComponent {

@@ -13,13 +13,13 @@
         </mat-form-field>
       </div>
       <div class="col-12">
-        <angular-editor
-          id="editor1"
+        <quill-editor
           [(ngModel)]="htmlContent1"
-          [config]="config1"
+          [modules]="quillConfig"
           (ngModelChange)="onChange($event)"
-          (blur)="onBlur($event)"
-        ></angular-editor>
+          (onBlur)="onBlur($event)"
+          style="width:100%;"
+        ></quill-editor>
       </div>
     </div>
   </form>

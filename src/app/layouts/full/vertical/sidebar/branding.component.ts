@@ -1,10 +1,10 @@
-import { NgIf } from '@angular/common';
+
 import { Component } from '@angular/core';
 import { CoreService } from 'src/app/services/core.service';
 
 @Component({
     selector: 'app-branding',
-    imports: [NgIf],
+    imports: [],
     template: `
     <div class="branding">
       @if(options.theme === 'light') {

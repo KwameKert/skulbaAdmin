@@ -73,8 +73,8 @@
       <mat-card-content>
         <mat-card-title class="m-b-20">Write a reply</mat-card-title>
         <form method="post">
-          <angular-editor id="editor1" [(ngModel)]="htmlContent1" [config]="config1" (ngModelChange)="onChange($event)"
-                  (blur)="onBlur($event)"></angular-editor>
+          <quill-editor [(ngModel)]="htmlContent1" [modules]="quillConfig" (ngModelChange)="onChange($event)"
+                  (onBlur)="onBlur($event)" style="width:100%;"></quill-editor>
           <button mat-flat-button class="m-t-20 m-r-5" color="primary">
             Reply
           </button>

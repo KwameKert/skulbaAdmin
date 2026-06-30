@@ -3,11 +3,11 @@ import { CoreService } from 'src/app/services/core.service';
 import { FormGroup, FormControl, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { MaterialModule } from '../../../material.module';
-import { NgIf } from '@angular/common';
+
 
 @Component({
     selector: 'app-side-forgot-password',
-    imports: [RouterModule, MaterialModule, FormsModule, ReactiveFormsModule, NgIf],
+    imports: [RouterModule, MaterialModule, FormsModule, ReactiveFormsModule],
     templateUrl: './side-forgot-password.component.html'
 })
 export class AppSideForgotPasswordComponent {

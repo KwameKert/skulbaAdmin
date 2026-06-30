@@ -1,4 +1,4 @@
-import { NgIf } from '@angular/common';
+
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
@@ -8,7 +8,7 @@ import { TablerIconsModule } from 'angular-tabler-icons';
 
 @Component({
     selector: 'app-breadcrumb',
-    imports: [RouterModule, NgIf, TablerIconsModule],
+    imports: [RouterModule, TablerIconsModule],
     templateUrl: './breadcrumb.component.html',
     styleUrls: []
 })

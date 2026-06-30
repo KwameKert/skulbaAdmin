@@ -8,7 +8,7 @@ import {
 import { Observable } from 'rxjs';
 import { startWith, map } from 'rxjs/operators';
 import { MaterialModule } from '../../../../material.module';
-import { CommonModule, NgForOf } from '@angular/common';
+import { CommonModule } from '@angular/common';
 
 // option group
 export interface StateGroup {
@@ -37,7 +37,7 @@ export interface State {
 
 @Component({
     selector: 'app-autocomplete',
-    imports: [MaterialModule, FormsModule, ReactiveFormsModule, NgForOf, CommonModule],
+    imports: [MaterialModule, FormsModule, ReactiveFormsModule, CommonModule],
     templateUrl: './autocomplete.component.html'
 })
 export class AppAutocompleteComponent implements OnInit {

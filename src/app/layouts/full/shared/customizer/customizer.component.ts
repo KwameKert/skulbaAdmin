@@ -9,13 +9,13 @@ import { CoreService } from 'src/app/services/core.service';
 import { BrandingComponent } from '../../vertical/sidebar/branding.component';
 import { TablerIconsModule } from 'angular-tabler-icons';
 import { MaterialModule } from 'src/app/material.module';
-import { CommonModule, NgIf } from '@angular/common';
+
 import { FormsModule } from '@angular/forms';
 import { NgScrollbarModule } from 'ngx-scrollbar';
 
 @Component({
     selector: 'app-customizer',
-    imports: [BrandingComponent, TablerIconsModule, MaterialModule, FormsModule, NgScrollbarModule, NgIf],
+    imports: [BrandingComponent, TablerIconsModule, MaterialModule, FormsModule, NgScrollbarModule],
     templateUrl: './customizer.component.html',
     styleUrls: ['./customizer.component.scss'],
     encapsulation: ViewEncapsulation.None

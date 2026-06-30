@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { MaterialModule } from '../../../material.module';
-import { NgFor } from '@angular/common';
+
 
 interface topcards {
   id: number;
@@ -12,7 +12,7 @@ interface topcards {
 
 @Component({
     selector: 'app-top-cards',
-    imports: [MaterialModule, NgFor],
+    imports: [MaterialModule],
     templateUrl: './top-cards.component.html'
 })
 export class AppTopCardsComponent {

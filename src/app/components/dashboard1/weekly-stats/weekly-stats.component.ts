@@ -11,7 +11,7 @@ import {
 } from 'ng-apexcharts';
 import { MaterialModule } from '../../../material.module';
 import { TablerIconsModule } from 'angular-tabler-icons';
-import { NgFor } from '@angular/common';
+
 
 export interface weeklyCart {
   series: ApexAxisChartSeries;
@@ -32,7 +32,7 @@ interface stats {
 
 @Component({
     selector: 'app-weekly-stats',
-    imports: [NgApexchartsModule, MaterialModule, TablerIconsModule, NgFor],
+    imports: [NgApexchartsModule, MaterialModule, TablerIconsModule],
     templateUrl: './weekly-stats.component.html'
 })
 export class AppWeeklyStatsComponent {

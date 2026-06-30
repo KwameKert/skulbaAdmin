@@ -3,11 +3,11 @@ import { CoreService } from 'src/app/services/core.service';
 import { FormGroup, FormControl, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { MaterialModule } from '../../../material.module';
-import { NgIf } from '@angular/common';
+
 
 @Component({
     selector: 'app-boxed-register',
-    imports: [RouterModule, MaterialModule, FormsModule, ReactiveFormsModule, NgIf],
+    imports: [RouterModule, MaterialModule, FormsModule, ReactiveFormsModule],
     templateUrl: './boxed-register.component.html'
 })
 export class AppBoxedRegisterComponent {
