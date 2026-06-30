@@ -29,6 +29,8 @@
     "angular-tabler-icons": "^2.47.0",
     "apexcharts": "^5.15.2",
     "date-fns": "^4.4.0",
+    "keycloak-angular": "^22.0.0",
+    "keycloak-js": "^26.2.4",
     "ng-apexcharts": "^2.4.0",
     "ngx-pagination": "^6.0.3",
     "ngx-permissions": "^19.0.0",
