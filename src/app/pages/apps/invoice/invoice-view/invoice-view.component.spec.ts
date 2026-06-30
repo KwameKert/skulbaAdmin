@@ -1,6 +1,7 @@
+import { RouterModule } from '@angular/router';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
-import { RouterTestingModule } from '@angular/router/testing';
+
 
 import { AppInvoiceViewComponent } from './invoice-view.component';
 
@@ -12,7 +13,7 @@ describe('AppInvoiceViewComponent', () => {
     waitForAsync(() => {
       TestBed.configureTestingModule({
         declarations: [AppInvoiceViewComponent],
-        imports: [ReactiveFormsModule, RouterTestingModule],
+        imports: [ReactiveFormsModule, RouterModule],
       }).compileComponents();
     }),
   );
