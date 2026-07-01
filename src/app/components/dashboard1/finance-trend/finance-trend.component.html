@@ -1,0 +1,30 @@
+<mat-card class="cardWithShadow">
+  <mat-card-header>
+    <div>
+      <mat-card-title>Finance Activity</mat-card-title>
+      <mat-card-subtitle class="mat-body-1">Monthly fee amount &amp; transaction count</mat-card-subtitle>
+    </div>
+  </mat-card-header>
+  <mat-card-content>
+    @if (data && data.length > 0) {
+    <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart" [plotOptions]="chartOptions.plotOptions"
+      [stroke]="chartOptions.stroke" [xaxis]="chartOptions.xaxis" [yaxis]="chartOptions.yaxis"
+      [legend]="chartOptions.legend" [dataLabels]="chartOptions.dataLabels" [grid]="chartOptions.grid"
+      [tooltip]="chartOptions.tooltip" [markers]="chartOptions.markers">
+    </apx-chart>
+    <!-- <div class="d-flex align-items-center gap-16 m-t-16 p-x-8">
+        <i-tabler name="coin" style="width: 32px; height: 32px; color: #FA896B;" class="flex-shrink-0"></i-tabler>
+        <div>
+          <span class="mat-subtitle-2">Total Fee Revenue</span>
+          <h4 class="mat-h4 f-w-700 m-0">{{ feeTotal | number: '1.2-2' }}</h4>
+        </div>
+      </div> -->
+    } @else {
+    <div class="d-flex flex-column align-items-center justify-content-center p-y-48"
+      style="color: #bbb; height: 300px;">
+      <i-tabler name="chart-bar" style="width: 48px; height: 48px;"></i-tabler>
+      <span class="f-s-14 m-t-8">No finance data available</span>
+    </div>
+    }
+  </mat-card-content>
+</mat-card>

@@ -1,0 +1,43 @@
+<mat-card class="cardWithShadow">
+  <mat-card-header>
+    <mat-card-title>Reports Overview</mat-card-title>
+    <mat-card-subtitle class="mat-body-1">All-time totals</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    @if (data) {
+    <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart" [labels]="chartOptions.labels"
+      [colors]="chartOptions.colors" [plotOptions]="chartOptions.plotOptions" [dataLabels]="chartOptions.dataLabels"
+      [stroke]="chartOptions.stroke" [legend]="chartOptions.legend" [tooltip]="chartOptions.tooltip">
+    </apx-chart>
+    <div class="d-flex align-items-center justify-content-around m-t-16">
+      <div class="d-flex align-items-center gap-8">
+        <i-tabler name="circle-filled" class="icon-12" style="color: #5D87FF;"></i-tabler>
+        <div>
+          <span class="mat-subtitle-2 d-block">Published</span>
+          <h6 class="mat-body-2 f-w-600 m-0">{{ totals.published | number }}</h6>
+        </div>
+      </div>
+      <div class="d-flex align-items-center gap-8">
+        <i-tabler name="circle-filled" class="icon-12" style="color: #49BEFF;"></i-tabler>
+        <div>
+          <span class="mat-subtitle-2 d-block">Draft</span>
+          <h6 class="mat-body-2 f-w-600 m-0">{{ totals.draft | number }}</h6>
+        </div>
+      </div>
+      <div class="d-flex align-items-center gap-8">
+        <i-tabler name="circle-filled" class="icon-12" style="color: #adb0bb;"></i-tabler>
+        <div>
+          <span class="mat-subtitle-2 d-block">Unpublished</span>
+          <h6 class="mat-body-2 f-w-600 m-0">{{ totals.unpublished | number }}</h6>
+        </div>
+      </div>
+    </div>
+    } @else {
+    <div class="d-flex flex-column align-items-center justify-content-center p-y-48"
+      style="color: #bbb; height: 240px;">
+      <i-tabler name="chart-donut" style="width: 48px; height: 48px;"></i-tabler>
+      <span class="f-s-14 m-t-8">No report data available</span>
+    </div>
+    }
+  </mat-card-content>
+</mat-card>

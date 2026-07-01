@@ -1,7 +1,7 @@
 export const environment = {
   production: false,
-  apiBaseUrl: 'http://localhost:8090/api',
-  keycloakUrl: 'http://localhost:8080',
-  keycloakRealm: 'school',
-  keycloakClient: 'school-portal',
+  apiBaseUrl: 'http://localhost:8080',
+  keycloakUrl: 'https://keycloak.kwamekert.com',
+  keycloakRealm: 'skulba-realm',
+  keycloakClient: 'skulba-app'
 };

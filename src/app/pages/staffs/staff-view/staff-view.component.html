@@ -1,0 +1,188 @@
+@if (isLoading) {
+<mat-card class="cardWithShadow">
+  <mat-card-content class="p-24">
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+  </mat-card-content>
+</mat-card>
+}
+
+@if (!isLoading && !staff) {
+<mat-card class="cardWithShadow">
+  <mat-card-content class="p-24 text-center">
+    <i-tabler name="alert-circle"
+      style="width: 48px; height: 48px; color: #e53935; display: block; margin: 0 auto 16px;"></i-tabler>
+    <h3 class="f-s-18 f-w-600">Staff Member Not Found</h3>
+    <p style="color: #888;">Could not load staff details. The record may not exist or you may not have access.</p>
+    <button mat-flat-button color="primary" (click)="goBack()">
+      <i-tabler name="arrow-left" class="icon-18 m-r-8"></i-tabler>
+      Back to Search
+    </button>
+  </mat-card-content>
+</mat-card>
+}
+
+@if (!isLoading && staff) {
+
+<!-- Header Card -->
+<mat-card class="cardWithShadow">
+  <mat-card-content class="p-24">
+    <div class="d-flex align-items-center justify-content-between flex-wrap gap-16">
+      <div class="d-flex align-items-center gap-16">
+        <div
+          class="d-flex align-items-center justify-content-center rounded-circle f-w-700 f-s-28"
+          style="width: 72px; height: 72px; flex-shrink: 0; background: var(--mat-sys-primary-container, #e8f0fe); color: var(--mat-sys-primary, #1565c0);"
+        >
+          {{ getInitial() }}
+        </div>
+        <div>
+          <h2 class="f-s-22 f-w-700 m-0 mat-subtitle-1">
+            {{ staff.firstName }} {{ staff.lastName }}
+          </h2>
+          <div class="d-flex align-items-center gap-8 m-t-4">
+            <i-tabler name="building" class="icon-16" style="color: #888;"></i-tabler>
+            <span class="f-s-13" style="color: #888;">{{ tenantId }}</span>
+            @if (staff.employeeCode) {
+              <span class="f-s-13" style="color: #bbb;">·</span>
+              <span class="f-s-13" style="color: #888;">{{ staff.employeeCode }}</span>
+            }
+            @if (staff.employeeType) {
+              <span class="f-s-13" style="color: #bbb;">·</span>
+              <span class="f-s-13" style="color: #888;">{{ staff.employeeType }}</span>
+            }
+          </div>
+          <div class="m-t-8">
+            <span
+              class="f-s-12 f-w-500"
+              [ngStyle]="getStatusStyle(staff.status)"
+              style="padding: 4px 12px; border-radius: 20px; display: inline-block;"
+            >
+              {{ staff.status }}
+            </span>
+          </div>
+        </div>
+      </div>
+      <button mat-stroked-button (click)="goBack()">
+        <i-tabler name="arrow-left" class="icon-18 m-r-8"></i-tabler>
+        Back to Search
+      </button>
+    </div>
+  </mat-card-content>
+</mat-card>
+
+<!-- Personal & Contact Row -->
+<div class="row m-t-24">
+  <div class="col-lg-6">
+    <mat-card class="cardWithShadow h-100">
+      <mat-card-content class="p-24">
+        <h5 class="f-s-16 f-w-600 m-t-0 m-b-16 d-flex align-items-center gap-8">
+          <i-tabler name="user" class="icon-20" style="color: var(--mat-sys-primary, #1565c0);"></i-tabler>
+          Personal Information
+        </h5>
+        <div class="row">
+          <div class="col-6 m-b-16">
+            <span class="f-s-12 f-w-600" style="color: #888; text-transform: uppercase; letter-spacing: 0.5px;">Gender</span>
+            <p class="f-s-14 m-0 m-t-4">{{ staff.gender || '—' }}</p>
+          </div>
+          <div class="col-6 m-b-16">
+            <span class="f-s-12 f-w-600" style="color: #888; text-transform: uppercase; letter-spacing: 0.5px;">Date of Birth</span>
+            <p class="f-s-14 m-0 m-t-4">{{ staff.dateOfBirth ? (staff.dateOfBirth | date:'mediumDate') : '—' }}</p>
+          </div>
+          <div class="col-6 m-b-16">
+            <span class="f-s-12 f-w-600" style="color: #888; text-transform: uppercase; letter-spacing: 0.5px;">Marital Status</span>
+            <p class="f-s-14 m-0 m-t-4">{{ staff.maritalStatus || '—' }}</p>
+          </div>
+          <div class="col-6 m-b-16">
+            <span class="f-s-12 f-w-600" style="color: #888; text-transform: uppercase; letter-spacing: 0.5px;">Languages</span>
+            <p class="f-s-14 m-0 m-t-4">{{ staff.languages || '—' }}</p>
+          </div>
+          <div class="col-12">
+            <span class="f-s-12 f-w-600" style="color: #888; text-transform: uppercase; letter-spacing: 0.5px;">Address</span>
+            <p class="f-s-14 m-0 m-t-4">{{ staff.address || '—' }}</p>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div class="col-lg-6">
+    <mat-card class="cardWithShadow h-100">
+      <mat-card-content class="p-24">
+        <h5 class="f-s-16 f-w-600 m-t-0 m-b-16 d-flex align-items-center gap-8">
+          <i-tabler name="phone" class="icon-20" style="color: var(--mat-sys-primary, #1565c0);"></i-tabler>
+          Contact & Emergency
+        </h5>
+        <div class="row">
+          <div class="col-12 m-b-16">
+            <span class="f-s-12 f-w-600" style="color: #888; text-transform: uppercase; letter-spacing: 0.5px;">Email</span>
+            <p class="f-s-14 m-0 m-t-4">{{ staff.email || '—' }}</p>
+          </div>
+          <div class="col-6 m-b-16">
+            <span class="f-s-12 f-w-600" style="color: #888; text-transform: uppercase; letter-spacing: 0.5px;">Phone</span>
+            <p class="f-s-14 m-0 m-t-4">{{ staff.phone || '—' }}</p>
+          </div>
+          <div class="col-6 m-b-16">
+            <span class="f-s-12 f-w-600" style="color: #888; text-transform: uppercase; letter-spacing: 0.5px;">Primary Contact</span>
+            <p class="f-s-14 m-0 m-t-4">{{ staff.primaryContactNumber || '—' }}</p>
+          </div>
+          <div class="col-6 m-b-16">
+            <span class="f-s-12 f-w-600" style="color: #888; text-transform: uppercase; letter-spacing: 0.5px;">Emergency Contact</span>
+            <p class="f-s-14 m-0 m-t-4">{{ staff.emergencyContactName || '—' }}</p>
+          </div>
+          <div class="col-6 m-b-16">
+            <span class="f-s-12 f-w-600" style="color: #888; text-transform: uppercase; letter-spacing: 0.5px;">Emergency Number</span>
+            <p class="f-s-14 m-0 m-t-4">{{ staff.emergencyContactNumber || '—' }}</p>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
+
+<!-- Employment Card -->
+<mat-card class="cardWithShadow m-t-24">
+  <mat-card-content class="p-24">
+    <h5 class="f-s-16 f-w-600 m-t-0 m-b-16 d-flex align-items-center gap-8">
+      <i-tabler name="briefcase" class="icon-20" style="color: var(--mat-sys-primary, #1565c0);"></i-tabler>
+      Employment
+    </h5>
+    <div class="row">
+      <div class="col-lg-3 col-6 m-b-16">
+        <span class="f-s-12 f-w-600" style="color: #888; text-transform: uppercase; letter-spacing: 0.5px;">Date of Joining</span>
+        <p class="f-s-14 m-0 m-t-4">{{ staff.dateOfJoining ? (staff.dateOfJoining | date:'mediumDate') : '—' }}</p>
+      </div>
+      <div class="col-lg-3 col-6 m-b-16">
+        <span class="f-s-12 f-w-600" style="color: #888; text-transform: uppercase; letter-spacing: 0.5px;">Employee Type</span>
+        <p class="f-s-14 m-0 m-t-4">{{ staff.employeeType || '—' }}</p>
+      </div>
+      <div class="col-lg-3 col-6 m-b-16">
+        <span class="f-s-12 f-w-600" style="color: #888; text-transform: uppercase; letter-spacing: 0.5px;">Qualification</span>
+        <p class="f-s-14 m-0 m-t-4">{{ staff.qualification || '—' }}</p>
+      </div>
+      <div class="col-lg-3 col-6 m-b-16">
+        <span class="f-s-12 f-w-600" style="color: #888; text-transform: uppercase; letter-spacing: 0.5px;">Work Experience</span>
+        <p class="f-s-14 m-0 m-t-4">{{ staff.workExperience || '—' }}</p>
+      </div>
+      @if (staff.previousSchool) {
+        <div class="col-12">
+          <span class="f-s-12 f-w-600" style="color: #888; text-transform: uppercase; letter-spacing: 0.5px;">Previous School</span>
+          <p class="f-s-14 m-0 m-t-4">{{ staff.previousSchool }}</p>
+        </div>
+      }
+    </div>
+  </mat-card-content>
+</mat-card>
+
+<!-- Notes Card -->
+@if (staff.notes) {
+<mat-card class="cardWithShadow m-t-24">
+  <mat-card-content class="p-24">
+    <h5 class="f-s-16 f-w-600 m-t-0 m-b-12 d-flex align-items-center gap-8">
+      <i-tabler name="notes" class="icon-20" style="color: var(--mat-sys-primary, #1565c0);"></i-tabler>
+      Notes
+    </h5>
+    <p class="f-s-14 m-0" style="line-height: 1.7;">{{ staff.notes }}</p>
+  </mat-card-content>
+</mat-card>
+}
+
+}

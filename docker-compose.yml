@@ -1,0 +1,7 @@
+services:
+  skulba-admin:
+    build: .
+    image: admin-skulba:latest
+    ports:
+      - "4200:80"
+    restart: unless-stopped

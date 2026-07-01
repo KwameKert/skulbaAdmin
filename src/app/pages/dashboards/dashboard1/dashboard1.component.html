@@ -1,42 +1,21 @@
-<app-top-cards></app-top-cards>
+<app-top-cards [stats]="stats" [isLoading]="isLoading"></app-top-cards>
 
-<div class="row">
-  <div class="col-lg-8">
-    <app-revenue-updates></app-revenue-updates>
+<div class="row m-t-24">
+
+
+  <!-- Report Status Breakdown (donut) -->
+  <div class="col-lg-4 col-12">
+    <app-report-overview [data]="stats?.academics"></app-report-overview>
   </div>
-  <div class="col-lg-4">
-    <div class="row">
-      <div class="col-12 col-sm-6 col-lg-12">
-        <app-yearly-breakup></app-yearly-breakup>
-      </div>
-      <div class="col-12 col-sm-6 col-lg-12">
-        <app-monthly-earnings></app-monthly-earnings>
-      </div>
-    </div>
+
+  <!-- Finance Monthly Activity (stacked bar) -->
+  <div class="col-lg-8 col-12 m-t-24">
+    <app-finance-trend [data]="stats?.billing?.monthlyStats"></app-finance-trend>
   </div>
-  <div class="col-lg-4">
-    <app-employee-salary></app-employee-salary>
-  </div>
-  <div class="col-lg-4">
-    <div class="row">
-      <div class="col-sm-6">
-        <app-customers></app-customers>
-      </div>
-      <div class="col-sm-6">
-        <app-projects></app-projects>
-      </div>
-      <div class="col-12">
-        <app-social-card></app-social-card>
-      </div>
-    </div>
-  </div>
-  <div class="col-lg-4">
-    <app-selling-product></app-selling-product>
-  </div>
-  <div class="col-lg-4">
-    <app-weekly-stats></app-weekly-stats>
-  </div>
-  <div class="col-lg-8">
-    <app-top-projects></app-top-projects>
+
+  <!-- Audit Logs Trend (sparkline) -->
+  <div class="col-lg-4 col-12 m-t-24">
+    <app-audit-trend [data]="stats?.users?.auditLogsByMonth" [total]="stats?.users?.totalAuditLogs">
+    </app-audit-trend>
   </div>
 </div>

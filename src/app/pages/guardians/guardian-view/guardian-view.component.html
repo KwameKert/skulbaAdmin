@@ -1,0 +1,150 @@
+@if (isLoading) {
+<mat-card class="cardWithShadow">
+  <mat-card-content class="p-24">
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+  </mat-card-content>
+</mat-card>
+}
+
+@if (!isLoading && !guardian) {
+<mat-card class="cardWithShadow">
+  <mat-card-content class="p-24 text-center">
+    <i-tabler name="alert-circle"
+      style="width: 48px; height: 48px; color: #e53935; display: block; margin: 0 auto 16px;"></i-tabler>
+    <h3 class="f-s-18 f-w-600">Guardian Not Found</h3>
+    <p style="color: #888;">Could not load guardian details. The record may not exist or you may not have access.</p>
+    <button mat-flat-button color="primary" (click)="goBack()">
+      <i-tabler name="arrow-left" class="icon-18 m-r-8"></i-tabler>
+      Back to Search
+    </button>
+  </mat-card-content>
+</mat-card>
+}
+
+@if (!isLoading && guardian) {
+
+<!-- Header Card -->
+<mat-card class="cardWithShadow">
+  <mat-card-content class="p-24">
+    <div class="d-flex align-items-center justify-content-between flex-wrap gap-16">
+      <div class="d-flex align-items-center gap-16">
+        <div
+          class="d-flex align-items-center justify-content-center rounded-circle f-w-700 f-s-28"
+          style="width: 72px; height: 72px; flex-shrink: 0; background: var(--mat-sys-primary-container, #e8f0fe); color: var(--mat-sys-primary, #1565c0);"
+        >
+          {{ getInitial() }}
+        </div>
+        <div>
+          <h2 class="f-s-22 f-w-700 m-0 mat-subtitle-1">
+            {{ guardian.firstName }} {{ guardian.lastName }}
+          </h2>
+          <div class="d-flex align-items-center gap-8 m-t-4">
+            <i-tabler name="building" class="icon-16" style="color: #888;"></i-tabler>
+            <span class="f-s-13" style="color: #888;">{{ tenantId }}</span>
+            @if (guardian.relationshipToStudent) {
+              <span class="f-s-13" style="color: #bbb;">·</span>
+              <span class="f-s-13" style="color: #888;">{{ guardian.relationshipToStudent }}</span>
+            }
+          </div>
+          <div class="m-t-8">
+            <span
+              class="f-s-12 f-w-500"
+              [ngStyle]="getStatusStyle(guardian.status)"
+              style="padding: 4px 12px; border-radius: 20px; display: inline-block;"
+            >
+              {{ guardian.status }}
+            </span>
+          </div>
+        </div>
+      </div>
+      <button mat-stroked-button (click)="goBack()">
+        <i-tabler name="arrow-left" class="icon-18 m-r-8"></i-tabler>
+        Back to Search
+      </button>
+    </div>
+  </mat-card-content>
+</mat-card>
+
+<!-- Personal & Relationship Row -->
+<div class="row m-t-24">
+  <div class="col-lg-6">
+    <mat-card class="cardWithShadow h-100">
+      <mat-card-content class="p-24">
+        <h5 class="f-s-16 f-w-600 m-t-0 m-b-16 d-flex align-items-center gap-8">
+          <i-tabler name="user" class="icon-20" style="color: var(--mat-sys-primary, #1565c0);"></i-tabler>
+          Personal & Contact
+        </h5>
+        <div class="row">
+          <div class="col-12 m-b-16">
+            <span class="f-s-12 f-w-600" style="color: #888; text-transform: uppercase; letter-spacing: 0.5px;">Email</span>
+            <p class="f-s-14 m-0 m-t-4">{{ guardian.email || '—' }}</p>
+          </div>
+          <div class="col-6 m-b-16">
+            <span class="f-s-12 f-w-600" style="color: #888; text-transform: uppercase; letter-spacing: 0.5px;">Phone</span>
+            <p class="f-s-14 m-0 m-t-4">{{ guardian.phoneNumber || '—' }}</p>
+          </div>
+          <div class="col-6 m-b-16">
+            <span class="f-s-12 f-w-600" style="color: #888; text-transform: uppercase; letter-spacing: 0.5px;">Occupation</span>
+            <p class="f-s-14 m-0 m-t-4">{{ guardian.occupation || '—' }}</p>
+          </div>
+          <div class="col-12">
+            <span class="f-s-12 f-w-600" style="color: #888; text-transform: uppercase; letter-spacing: 0.5px;">Address</span>
+            <p class="f-s-14 m-0 m-t-4">{{ guardian.address || '—' }}</p>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div class="col-lg-6">
+    <mat-card class="cardWithShadow h-100">
+      <mat-card-content class="p-24">
+        <h5 class="f-s-16 f-w-600 m-t-0 m-b-16 d-flex align-items-center gap-8">
+          <i-tabler name="heart-handshake" class="icon-20" style="color: var(--mat-sys-primary, #1565c0);"></i-tabler>
+          Relationship & Preferences
+        </h5>
+        <div class="row">
+          <div class="col-12 m-b-16">
+            <span class="f-s-12 f-w-600" style="color: #888; text-transform: uppercase; letter-spacing: 0.5px;">Relationship to Student</span>
+            <p class="f-s-14 m-0 m-t-4">{{ guardian.relationshipToStudent || '—' }}</p>
+          </div>
+          <div class="col-4 m-b-16">
+            <span class="f-s-12 f-w-600" style="color: #888; text-transform: uppercase; letter-spacing: 0.5px;">Primary</span>
+            <p class="f-s-14 m-0 m-t-4">
+              <span class="f-s-12 f-w-500"
+                [style.color]="guardian.isPrimary ? '#00796b' : '#888'"
+                [style.background-color]="guardian.isPrimary ? '#e0f7fa' : '#f0f0f0'"
+                style="padding: 3px 10px; border-radius: 20px; display: inline-block;">
+                {{ guardian.isPrimary ? 'Yes' : 'No' }}
+              </span>
+            </p>
+          </div>
+          <div class="col-4 m-b-16">
+            <span class="f-s-12 f-w-600" style="color: #888; text-transform: uppercase; letter-spacing: 0.5px;">Email Alerts</span>
+            <p class="f-s-14 m-0 m-t-4">
+              <span class="f-s-12 f-w-500"
+                [style.color]="guardian.isEmailEnable ? '#00796b' : '#888'"
+                [style.background-color]="guardian.isEmailEnable ? '#e0f7fa' : '#f0f0f0'"
+                style="padding: 3px 10px; border-radius: 20px; display: inline-block;">
+                {{ guardian.isEmailEnable ? 'On' : 'Off' }}
+              </span>
+            </p>
+          </div>
+          <div class="col-4 m-b-16">
+            <span class="f-s-12 f-w-600" style="color: #888; text-transform: uppercase; letter-spacing: 0.5px;">SMS Alerts</span>
+            <p class="f-s-14 m-0 m-t-4">
+              <span class="f-s-12 f-w-500"
+                [style.color]="guardian.isSmsEnable ? '#00796b' : '#888'"
+                [style.background-color]="guardian.isSmsEnable ? '#e0f7fa' : '#f0f0f0'"
+                style="padding: 3px 10px; border-radius: 20px; display: inline-block;">
+                {{ guardian.isSmsEnable ? 'On' : 'Off' }}
+              </span>
+            </p>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
+
+}

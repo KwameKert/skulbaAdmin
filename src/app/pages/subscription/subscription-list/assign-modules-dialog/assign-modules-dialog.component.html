@@ -1,0 +1,46 @@
+<h2 class="f-w-500 m-b-8" mat-dialog-title>
+  <strong>Assign Modules</strong>
+  <small class="d-block mat-body-1 f-w-400 f-s-14" style="color: #888">{{ plan.name }}</small>
+</h2>
+
+<mat-dialog-content style="min-width: 440px; max-height: 480px">
+  @if (isLoading) {
+    <mat-progress-bar mode="indeterminate" class="m-b-16"></mat-progress-bar>
+  }
+
+  @if (!isLoading && allModules.length === 0) {
+    <p class="f-s-14" style="color: #888; text-align: center; padding: 24px 0;">
+      No modules available. Create modules first.
+    </p>
+  }
+
+  @if (!isLoading && allModules.length > 0) {
+    <mat-selection-list #modulesList>
+      @for (module of allModules; track module.id) {
+        <mat-list-option [value]="module.id" [selected]="isSelected(module.id)">
+          <div class="d-flex align-items-center justify-content-between w-100">
+            <div>
+              <span class="f-s-14 f-w-600">{{ module.name }}</span>
+              <span class="f-s-12 m-l-8" style="color: #888">{{ module.code }}</span>
+            </div>
+            <span
+              class="f-s-11 f-w-500"
+              [style.color]="module.status === 'ACTIVE' ? '#00796b' : '#f57c00'"
+              [style.background-color]="module.status === 'ACTIVE' ? '#e0f7fa' : '#fff3e0'"
+              style="padding: 2px 8px; border-radius: 12px;"
+            >
+              {{ module.status }}
+            </span>
+          </div>
+        </mat-list-option>
+      }
+    </mat-selection-list>
+  }
+</mat-dialog-content>
+
+<div mat-dialog-actions class="p-x-24 p-b-24 d-flex gap-16">
+  <button mat-flat-button color="primary" [disabled]="isLoading" (click)="assign()">
+    Assign
+  </button>
+  <button mat-stroked-button color="warn" (click)="closeDialog()">Cancel</button>
+</div>

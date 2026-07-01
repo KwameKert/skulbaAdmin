@@ -1,24 +1,47 @@
+@if (isLoading) {
+<mat-progress-bar mode="indeterminate" class="m-b-12"></mat-progress-bar>
+}
+
+
 <div class="row">
-  @for(topcard of topcards; track topcard.color) {
+  @for(topcard of allCards; track topcard.color) {
   <div class="col-lg-2 col-sm-4 col-6">
-    <mat-card
-      class="shadow-none text-center bg-light-{{ topcard.color }}  shadow-none"
-    >
+    <mat-card class="shadow-none text-center bg-light-{{ topcard.color }}  shadow-none">
       <mat-card-content class="p-32">
-        <img
-          [src]="topcard.img"
-          alt="users"
-          width="40"
-          class="rounded-circle"
-        />
-        <h4 class="mat-subtitle-2 f-w-600 text-{{ topcard.color }} m-t-8">
-          {{ topcard.title }}
-        </h4>
-        <h6 class="m-t-4 mat-subtitle-1 f-w-600 text-{{ topcard.color }} m-t-8">
-          {{ topcard.subtitle }}
+        <i-tabler [name]="topcard.icon" class="icon-36 text-{{ topcard.color }}"
+          style="display: block; margin: 0 auto;"></i-tabler>
+        <h4 class="mat-subtitle-2 f-w-600 text-{{ topcard.color }} m-t-8 m-b-4">{{ topcard.label }}</h4>
+
+        <h6 class="m-0 mat-subtitle-1 f-w-700 text-{{ topcard.color }}">
+          @if (topcard.value !== null) {
+          @if (topcard.currency) { {{ topcard.value | number:'1.0-2' }} }
+          @else { {{ topcard.value | number }} }
+          }
+          @else if (!isLoading) { — }
         </h6>
       </mat-card-content>
     </mat-card>
   </div>
   }
 </div>
+
+<!-- <div class="d-flex flex-nowrap overflow-auto gap-16 p-b-8 m-b-24">
+  @for (card of allCards; track card.label) {
+  <div style="min-width: 180px; flex-shrink: 0;">
+    <mat-card class="shadow-none text-center bg-light-{{ card.color }} h-100">
+      <mat-card-content class="p-24">
+        <i-tabler [name]="card.icon" class="icon-36 text-{{ card.color }}"
+          style="display: block; margin: 0 auto;"></i-tabler>
+        <h4 class="mat-subtitle-2 f-w-600 text-{{ card.color }} m-t-8 m-b-4">{{ card.label }}</h4>
+        <h6 class="m-0 mat-subtitle-1 f-w-700 text-{{ card.color }}">
+          @if (card.value !== null) {
+          @if (card.currency) { {{ card.value | number:'1.0-2' }} }
+          @else { {{ card.value | number }} }
+          }
+          @else if (!isLoading) { — }
+        </h6>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  }
+</div> -->

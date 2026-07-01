@@ -1,0 +1,18 @@
+<div class="d-flex align-items-center justify-content-center" style="min-height: 100vh; background: #f5f5f5;">
+  <mat-card style="max-width: 480px; width: 100%; text-align: center;">
+    <mat-card-content class="p-24" style="padding: 48px 32px;">
+      <i-tabler name="lock"
+        style="width: 64px; height: 64px; color: #e53935; display: block; margin: 0 auto 24px;"></i-tabler>
+
+      <h1 class="f-s-28 f-w-700 m-t-0 m-b-8">Access Denied</h1>
+      <p class="f-s-15 m-t-0 m-b-24" style="color: #666; line-height: 1.6;">
+        You do not have permission to access this page.
+      </p>
+
+      <button mat-flat-button color="warn" (click)="logout()">
+        <i-tabler name="logout" class="icon-18 m-r-8"></i-tabler>
+        Logout
+      </button>
+    </mat-card-content>
+  </mat-card>
+</div>

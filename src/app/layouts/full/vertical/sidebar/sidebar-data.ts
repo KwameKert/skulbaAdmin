@@ -15,79 +15,82 @@ export const navItems: NavItem[] = [
   },
   {
     displayName: 'Students',
+    iconName: 'user-search',
+    route: '/students/search',
+  },
+  {
+    displayName: 'Guardians',
     iconName: 'users',
-    route: '/students/list',
+    route: '/guardians/search',
   },
   {
-    displayName: 'Teachers',
-    iconName: 'chalkboard',
-    route: '/teachers/list',
+    displayName: 'Staff',
+    iconName: 'id-badge-2',
+    route: '/staffs/search',
   },
-  {
-    displayName: 'Classes',
-    iconName: 'school',
-    route: '/classes/list',
-  },
-  {
-    displayName: 'Subjects',
-    iconName: 'book',
-    route: '/subjects/list',
-  },
+  // {
+  //   navCap: 'Operations',
+  // },
+  // {
+  //   displayName: 'Attendance',
+  //   iconName: 'calendar-check',
+  //   route: '/attendance',
+  // },
+  // {
+  //   displayName: 'Timetable',
+  //   iconName: 'clock',
+  //   route: '/timetable',
+  // },
+  // {
+  //   displayName: 'Exams & Grades',
+  //   iconName: 'pencil',
+  //   route: '/exams',
+  // },
+
+  // {
+  //   navCap: 'Finance',
+  // },
+  // {
+  //   displayName: 'Fee Management',
+  //   iconName: 'cash',
+  //   route: '/fees/list',
+  // },
+  // {
+  //   displayName: 'Payments',
+  //   iconName: 'credit-card',
+  //   route: '/payments/list',
+  // },
 
   {
-    navCap: 'Operations',
+    navCap: 'Payroll',
   },
   {
-    displayName: 'Attendance',
-    iconName: 'calendar-check',
-    route: '/attendance',
+    displayName: 'Statutory Deductions',
+    iconName: 'file-certificate',
+    route: '/payroll/statutory',
   },
   {
-    displayName: 'Timetable',
-    iconName: 'clock',
-    route: '/timetable',
-  },
-  {
-    displayName: 'Exams & Grades',
-    iconName: 'pencil',
-    route: '/exams',
-  },
-
-  {
-    navCap: 'Finance',
-  },
-  {
-    displayName: 'Fee Management',
-    iconName: 'cash',
-    route: '/fees/list',
-  },
-  {
-    displayName: 'Payments',
-    iconName: 'credit-card',
-    route: '/payments/list',
+    displayName: 'PAYE Bands',
+    iconName: 'percentage',
+    route: '/payroll/paye-bands',
   },
 
   {
     navCap: 'Administration',
   },
   {
-    displayName: 'Staff',
-    iconName: 'id-badge',
-    route: '/staff/list',
+    displayName: 'Subscriptions',
+    iconName: 'receipt-2',
+    route: '/subscription/list',
   },
   {
-    displayName: 'Announcements',
-    iconName: 'speakerphone',
-    route: '/announcements',
+    displayName: 'Tenants',
+    iconName: 'building',
+    route: '/tenants/list',
   },
-  {
-    displayName: 'Reports',
-    iconName: 'chart-bar',
-    route: '/reports',
-  },
-  {
-    displayName: 'Settings',
-    iconName: 'settings',
-    route: '/settings',
-  },
+  // {
+  //   displayName: 'Settings',
+  //   iconName: 'settings',
+  //   route: '/settings',
+  // },
 ];

@@ -1,0 +1,230 @@
+@if (isLoading) {
+<mat-card class="cardWithShadow">
+  <mat-card-content class="p-24">
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+  </mat-card-content>
+</mat-card>
+}
+
+@if (!isLoading && !student) {
+<mat-card class="cardWithShadow">
+  <mat-card-content class="p-24 text-center">
+    <i-tabler name="alert-circle"
+      style="width: 48px; height: 48px; color: #e53935; display: block; margin: 0 auto 16px;"></i-tabler>
+    <h3 class="f-s-18 f-w-600">Student Not Found</h3>
+    <p style="color: #888;">Could not load student details. The student may not exist or you may not have access.</p>
+    <button mat-flat-button color="primary" (click)="goBack()">
+      <i-tabler name="arrow-left" class="icon-18 m-r-8"></i-tabler>
+      Back to Search
+    </button>
+  </mat-card-content>
+</mat-card>
+}
+
+@if (!isLoading && student) {
+
+<!-- Header Card -->
+<mat-card class="cardWithShadow">
+  <mat-card-content class="p-24">
+    <div class="d-flex align-items-center justify-content-between flex-wrap gap-16">
+      <div class="d-flex align-items-center gap-16">
+        <div class="d-flex align-items-center justify-content-center rounded-circle f-w-700 f-s-28"
+          style="width: 72px; height: 72px; flex-shrink: 0; background: var(--mat-sys-primary-container, #e8f0fe); color: var(--mat-sys-primary, #1565c0);">
+          {{ getInitial() }}
+        </div>
+        <div>
+          <h2 class="f-s-22 f-w-700 m-0 mat-subtitle-1">
+            {{ student.firstName }} {{ student.otherNames ? student.otherNames + ' ' : '' }}{{ student.lastName }}
+          </h2>
+          <div class="d-flex align-items-center gap-8 m-t-4">
+            <i-tabler name="building" class="icon-16" style="color: #888;"></i-tabler>
+            <span class="f-s-13" style="color: #888;">{{ tenantId }}</span>
+            @if (student.studentId || student.code) {
+            <span class="f-s-13" style="color: #bbb;">·</span>
+            <span class="f-s-13" style="color: #888;">{{ student.studentId || student.code }}</span>
+            }
+          </div>
+          <div class="m-t-8">
+            <span class="f-s-12 f-w-500" [ngStyle]="getStatusStyle(student.status)"
+              style="padding: 4px 12px; border-radius: 20px; display: inline-block;">
+              {{ student.status }}
+            </span>
+          </div>
+        </div>
+      </div>
+      <button mat-stroked-button (click)="goBack()">
+        <i-tabler name="arrow-left" class="icon-18 m-r-8"></i-tabler>
+        Back to Search
+      </button>
+    </div>
+  </mat-card-content>
+</mat-card>
+
+<!-- Personal & Contact Info -->
+<div class="row m-t-24">
+  <div class="col-lg-6">
+    <mat-card class="cardWithShadow h-100">
+      <mat-card-content class="p-24">
+        <h5 class="f-s-16 f-w-600 m-t-0 m-b-16 d-flex align-items-center gap-8">
+          <i-tabler name="user" class="icon-20" style="color: var(--mat-sys-primary, #1565c0);"></i-tabler>
+          Personal Information
+        </h5>
+        <div class="row">
+          <div class="col-6 m-b-16">
+            <span class="f-s-12 f-w-600"
+              style="color: #888; text-transform: uppercase; letter-spacing: 0.5px;">Gender</span>
+            <p class="f-s-14 m-0 m-t-4">{{ student.gender || '—' }}</p>
+          </div>
+          <div class="col-6 m-b-16">
+            <span class="f-s-12 f-w-600" style="color: #888; text-transform: uppercase; letter-spacing: 0.5px;">Date of
+              Birth</span>
+            <p class="f-s-14 m-0 m-t-4">{{ student.dateOfBirth ? (student.dateOfBirth | date:'mediumDate') : '—' }}</p>
+          </div>
+          <div class="col-6 m-b-16">
+            <span class="f-s-12 f-w-600" style="color: #888; text-transform: uppercase; letter-spacing: 0.5px;">Mother
+              Tongue</span>
+            <p class="f-s-14 m-0 m-t-4">{{ student.motherTongue || '—' }}</p>
+          </div>
+          <div class="col-6 m-b-16">
+            <span class="f-s-12 f-w-600"
+              style="color: #888; text-transform: uppercase; letter-spacing: 0.5px;">Languages</span>
+            <p class="f-s-14 m-0 m-t-4">{{ student.languages || '—' }}</p>
+          </div>
+          <div class="col-12">
+            <span class="f-s-12 f-w-600"
+              style="color: #888; text-transform: uppercase; letter-spacing: 0.5px;">Address</span>
+            <p class="f-s-14 m-0 m-t-4">{{ student.address || '—' }}</p>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div class="col-lg-6">
+    <mat-card class="cardWithShadow h-100">
+      <mat-card-content class="p-24">
+        <h5 class="f-s-16 f-w-600 m-t-0 m-b-16 d-flex align-items-center gap-8">
+          <i-tabler name="phone" class="icon-20" style="color: var(--mat-sys-primary, #1565c0);"></i-tabler>
+          Contact Information
+        </h5>
+        <div class="row">
+          <div class="col-12 m-b-16">
+            <span class="f-s-12 f-w-600"
+              style="color: #888; text-transform: uppercase; letter-spacing: 0.5px;">Email</span>
+            <p class="f-s-14 m-0 m-t-4">{{ student.email || '—' }}</p>
+          </div>
+          <div class="col-12 m-b-16">
+            <span class="f-s-12 f-w-600"
+              style="color: #888; text-transform: uppercase; letter-spacing: 0.5px;">Phone</span>
+            <p class="f-s-14 m-0 m-t-4">{{ student.phoneNumber || '—' }}</p>
+          </div>
+        </div>
+        <h5 class="f-s-16 f-w-600 m-b-16 m-t-8 d-flex align-items-center gap-8">
+          <i-tabler name="school" class="icon-20" style="color: var(--mat-sys-primary, #1565c0);"></i-tabler>
+          Academic
+        </h5>
+        <div class="row">
+          <div class="col-6 m-b-16">
+            <span class="f-s-12 f-w-600" style="color: #888; text-transform: uppercase; letter-spacing: 0.5px;">Class
+              ID</span>
+            <p class="f-s-14 m-0 m-t-4">{{ student.classId || '—' }}</p>
+          </div>
+          <div class="col-6 m-b-16">
+            <span class="f-s-12 f-w-600" style="color: #888; text-transform: uppercase; letter-spacing: 0.5px;">Term
+              ID</span>
+            <p class="f-s-14 m-0 m-t-4">{{ student.termId || '—' }}</p>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
+
+<!-- Medical & Notes -->
+@if (student.medicalAllergies || student.medicalConditions || student.notes) {
+<mat-card class="cardWithShadow m-t-24">
+  <mat-card-content class="p-24">
+    <h5 class="f-s-16 f-w-600 m-t-0 m-b-16 d-flex align-items-center gap-8">
+      <i-tabler name="medical-cross" class="icon-20" style="color: #e53935;"></i-tabler>
+      Medical & Notes
+    </h5>
+    <div class="row">
+      @if (student.medicalAllergies) {
+      <div class="col-lg-4 m-b-16">
+        <span class="f-s-12 f-w-600"
+          style="color: #888; text-transform: uppercase; letter-spacing: 0.5px;">Allergies</span>
+        <p class="f-s-14 m-0 m-t-4">{{ student.medicalAllergies }}</p>
+      </div>
+      }
+      @if (student.medicalConditions) {
+      <div class="col-lg-4 m-b-16">
+        <span class="f-s-12 f-w-600" style="color: #888; text-transform: uppercase; letter-spacing: 0.5px;">Medical
+          Conditions</span>
+        <p class="f-s-14 m-0 m-t-4">{{ student.medicalConditions }}</p>
+      </div>
+      }
+      @if (student.notes) {
+      <div class="col-lg-4 m-b-16">
+        <span class="f-s-12 f-w-600" style="color: #888; text-transform: uppercase; letter-spacing: 0.5px;">Notes</span>
+        <p class="f-s-14 m-0 m-t-4">{{ student.notes }}</p>
+      </div>
+      }
+    </div>
+  </mat-card-content>
+</mat-card>
+}
+
+<!-- Guardians -->
+@if (student.guardians && student.guardians.length > 0) {
+<mat-card class="cardWithShadow m-t-24">
+  <mat-card-content class="p-24">
+    <h5 class="f-s-16 f-w-600 m-t-0 m-b-16 d-flex align-items-center gap-8">
+      <i-tabler name="users" class="icon-20" style="color: var(--mat-sys-primary, #1565c0);"></i-tabler>
+      Guardians
+    </h5>
+    <div class="row">
+      @for (guardian of student.guardians; track guardian.id) {
+      <div class="col-lg-6 m-b-16">
+        <div class="p-16 rounded" style="border: 1px solid #e0e0e0;">
+          <div class="d-flex align-items-center justify-content-between m-b-12">
+            <div class="d-flex align-items-center gap-12">
+              <div class="d-flex align-items-center justify-content-center rounded-circle f-w-700 f-s-14"
+                style="width: 36px; height: 36px; flex-shrink: 0; background: #f3e5f5; color: #7b1fa2;">
+                {{ guardian.firstName.charAt(0).toUpperCase() }}
+              </div>
+              <div>
+                <p class="f-s-14 f-w-600 m-0">{{ guardian.firstName }} {{ guardian.lastName }}</p>
+                <span class="f-s-12" style="color: #888;">{{ guardian.relationshipToStudent }}</span>
+              </div>
+            </div>
+            @if (guardian.isPrimary) {
+            <span class="f-s-11 f-w-600"
+              style="padding: 2px 8px; border-radius: 12px; background: #e8f5e9; color: #2e7d32;">Primary</span>
+            }
+          </div>
+          <div class="f-s-13" style="color: #555; line-height: 1.8;">
+            @if (guardian.email) {
+            <div class="d-flex align-items-center gap-8">
+              <i-tabler name="mail" class="icon-14"></i-tabler> {{ guardian.email }}
+            </div>
+            }
+            @if (guardian.phoneNumber) {
+            <div class="d-flex align-items-center gap-8">
+              <i-tabler name="phone" class="icon-14"></i-tabler> {{ guardian.phoneNumber }}
+            </div>
+            }
+            @if (guardian.occupation) {
+            <div class="d-flex align-items-center gap-8">
+              <i-tabler name="briefcase" class="icon-14"></i-tabler> {{ guardian.occupation }}
+            </div>
+            }
+          </div>
+        </div>
+      </div>
+      }
+    </div>
+  </mat-card-content>
+</mat-card>
+}
+
+}
