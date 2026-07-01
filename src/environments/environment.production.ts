@@ -1,7 +1,7 @@
 export const environment = {
   production: true,
-  apiBaseUrl: 'https://api.yourdomain.com/api',
-  keycloakUrl: 'https://auth.yourdomain.com',
-  keycloakRealm: 'school',
-  keycloakClient: 'school-portal',
+  apiBaseUrl: 'https://api.skulba.com',
+  keycloakUrl: 'https://auth.skulba.com',
+  keycloakRealm: 'skulba-realm',
+  keycloakClient: 'skulba-app'
 };
