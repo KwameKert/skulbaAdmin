@@ -5,7 +5,7 @@ on:
     branches: [dev]
 env:
   REGISTRY: registry.kwamekert.com
-  IMAGE_NAME: skulba-app
+  IMAGE_NAME: skulba-admin
 
 jobs:
   build:
