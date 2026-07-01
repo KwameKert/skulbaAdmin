@@ -7,10 +7,10 @@ import { filter, map, mergeMap } from 'rxjs/operators';
 import { TablerIconsModule } from 'angular-tabler-icons';
 
 @Component({
-    selector: 'app-breadcrumb',
-    imports: [RouterModule, TablerIconsModule],
-    templateUrl: './breadcrumb.component.html',
-    styleUrls: []
+  selector: 'app-breadcrumb',
+  imports: [RouterModule, TablerIconsModule],
+  templateUrl: './breadcrumb.component.html',
+  styleUrls: []
 })
 export class AppBreadcrumbComponent {
   // @Input() layout;
@@ -37,7 +37,7 @@ export class AppBreadcrumbComponent {
       // tslint:disable-next-line - Disables all
       .subscribe((event) => {
         // tslint:disable-next-line - Disables all
-        this.titleService.setTitle(event['title'] + ' - Angular 17');
+        this.titleService.setTitle(event['title'] + ' - Skulba Admin');
         this.pageInfo = event;
       });
   }
