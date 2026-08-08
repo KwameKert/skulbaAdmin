@@ -93,12 +93,12 @@
             <p class="f-s-12 m-t-0 m-b-4" style="color: #888;">Plan Code</p>
             <p class="f-s-14 f-w-500 m-t-0 m-b-0">{{ tenantDetail.subscriptionPlanCode || '—' }}</p>
           </div>
-          <!-- <div class="col-6">
-              <p class="f-s-12 m-t-0 m-b-4" style="color: #888;">Price</p>
-              <p class="f-s-14 f-w-600 m-t-0 m-b-0">
-                {{ tenantDetail.subscriptionPlanPrice ? ('$' + tenantDetail.subscriptionPlanPrice) : '—' }}
-              </p>
-            </div> -->
+          <div class="col-6">
+            <p class="f-s-12 m-t-0 m-b-4" style="color: #888;">Price</p>
+            <p class="f-s-14 f-w-600 m-t-0 m-b-0">
+              {{ tenantDetail.price ? ('GHS ' + tenantDetail.price) : '—' }}
+            </p>
+          </div>
           <div class="col-6">
             <p class="f-s-12 m-t-0 m-b-4" style="color: #888;">Status</p>
             <span class="f-s-12 f-w-500" [ngStyle]="getSubStatusStyle(tenantDetail.subscriptionStatus)"

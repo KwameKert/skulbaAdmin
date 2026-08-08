@@ -6,53 +6,29 @@
       <div class="col-lg-12">
         <mat-form-field appearance="outline" class="w-100">
           <mat-label>Tenant ID</mat-label>
-          <input
-            type="text"
-            matInput
-            required
-            name="tenantId"
-            [(ngModel)]="local_data.tenantId"
-            [disabled]="action === 'Update'"
-          />
+          <input type="text" matInput required name="tenantId" [(ngModel)]="local_data.tenantId"
+            [disabled]="action === 'Update'" />
           @if (action === 'Update') {
-            <mat-hint>Tenant ID cannot be changed after creation.</mat-hint>
+          <mat-hint>Tenant ID cannot be changed after creation.</mat-hint>
           }
         </mat-form-field>
       </div>
-      <div class="col-lg-6">
+      <div class="col-lg-12">
         <mat-form-field appearance="outline" class="w-100">
           <mat-label>School Name</mat-label>
-          <input
-            type="text"
-            matInput
-            required
-            name="name"
-            [(ngModel)]="local_data.name"
-          />
+          <input type="text" matInput required name="name" [(ngModel)]="local_data.name" />
         </mat-form-field>
       </div>
-      <div class="col-lg-6">
+      <div class="col-lg-12">
         <mat-form-field appearance="outline" class="w-100">
           <mat-label>Email</mat-label>
-          <input
-            type="email"
-            matInput
-            required
-            name="email"
-            [(ngModel)]="local_data.email"
-          />
+          <input type="email" matInput required name="email" [(ngModel)]="local_data.email" />
         </mat-form-field>
       </div>
       <div class="col-lg-6">
         <mat-form-field appearance="outline" class="w-100">
           <mat-label>Phone</mat-label>
-          <input
-            type="text"
-            matInput
-            required
-            name="phone"
-            [(ngModel)]="local_data.phone"
-          />
+          <input type="text" matInput required name="phone" [(ngModel)]="local_data.phone" />
         </mat-form-field>
       </div>
       <div class="col-lg-6">
@@ -60,30 +36,27 @@
           <mat-label>Status</mat-label>
           <mat-select required name="status" [(ngModel)]="local_data.status">
             @for (opt of statusOptions; track opt) {
-              <mat-option [value]="opt">{{ opt }}</mat-option>
+            <mat-option [value]="opt">{{ opt }}</mat-option>
             }
           </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="col-lg-6">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Price (per Month)</mat-label>
+          <input type="number" matInput required name="price" [(ngModel)]="local_data.price" />
         </mat-form-field>
       </div>
       <div class="col-lg-12">
         <mat-form-field appearance="outline" class="w-100">
           <mat-label>Address</mat-label>
-          <input
-            type="text"
-            matInput
-            name="address"
-            [(ngModel)]="local_data.address"
-          />
+          <input type="text" matInput name="address" [(ngModel)]="local_data.address" />
         </mat-form-field>
       </div>
     </div>
     <div class="d-flex gap-16 m-t-8">
-      <button
-        mat-flat-button
-        color="primary"
-        [disabled]="!tenantForm.valid"
-        (click)="doAction()"
-      >
+      <button mat-flat-button color="primary" [disabled]="!tenantForm.valid" (click)="doAction()">
         {{ action }}
       </button>
       <button mat-stroked-button color="warn" (click)="closeDialog()">

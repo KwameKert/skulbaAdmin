@@ -1,0 +1,20 @@
+<h2 class="f-w-500 m-b-16" mat-dialog-title>
+  <strong>{{ data.title }}</strong>
+</h2>
+
+<mat-dialog-content style="min-width: 360px">
+  <p class="f-s-14 m-0">{{ data.message }}</p>
+</mat-dialog-content>
+
+<div class="d-flex gap-16 m-t-24">
+  <button
+    mat-flat-button
+    [color]="data.isDestructive ? 'warn' : 'primary'"
+    (click)="confirm()"
+  >
+    {{ data.confirmText || 'Confirm' }}
+  </button>
+  <button mat-stroked-button (click)="cancel()">
+    {{ data.cancelText || 'Cancel' }}
+  </button>
+</div>
