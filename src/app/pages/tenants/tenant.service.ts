@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { ApiResponse } from '../shared/models/common.model';
-import { Tenant, TenantDetailsDTO } from './tenant.model';
+import { Tenant, TenantDetailsDTO, TenantSubscriptionDTO } from './tenant.model';
 
 @Injectable({ providedIn: 'root' })
 export class TenantService {
@@ -31,7 +31,7 @@ export class TenantService {
         return this.http.delete<void>(`${this.apiUrl}/${id}`);
     }
 
-    assignSubscriptionPlan(data: TenantDetailsDTO): Observable<ApiResponse<TenantDetailsDTO>> {
+    assignSubscriptionPlan(data: TenantSubscriptionDTO): Observable<ApiResponse<TenantDetailsDTO>> {
         return this.http.post<ApiResponse<TenantDetailsDTO>>(`${this.apiUrl}/assign-subscription`, data);
     }
 }

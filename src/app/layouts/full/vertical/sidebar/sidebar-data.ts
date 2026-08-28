@@ -88,6 +88,11 @@ export const navItems: NavItem[] = [
     iconName: 'building',
     route: '/tenants/list',
   },
+  {
+    displayName: 'Invoices',
+    iconName: 'file-invoice',
+    route: '/invoices/list',
+  },
   // {
   //   displayName: 'Settings',
   //   iconName: 'settings',

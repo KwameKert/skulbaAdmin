@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { MatNativeDateModule } from '@angular/material/core';
 
 import { MaterialModule } from '../../material.module';
 import { TablerIconsModule } from 'angular-tabler-icons';
@@ -19,6 +20,7 @@ import { TenantViewComponent } from './tenant-view/tenant-view.component';
     CommonModule,
     RouterModule.forChild(TenantsRoutes),
     MaterialModule,
+    MatNativeDateModule,
     FormsModule,
     TablerIconsModule.pick(TablerIcons),
   ],

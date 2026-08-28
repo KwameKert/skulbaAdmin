@@ -27,6 +27,9 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
 
+      - name: Export IMAGE_TAG
+        run: echo "IMAGE_TAG=${GITHUB_SHA::12}" >> $GITHUB_ENV
+
       - name: Install dependencies
         run: npm ci --legacy-peer-deps
 
@@ -50,4 +53,31 @@ jobs:
           push: true
           build-args: |
             GIT_COMMIT=${{ github.sha }}
-          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest, ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:build-${{ github.run_number }}
+          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest, ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}
+
+      - name: Checkout manifest repo
+        uses: actions/checkout@v4
+        with:
+          repository: kwamekert/odin-stack
+          ref: main
+          token: ${{ secrets.GITOPS_TOKEN }}
+          path: manifests
+
+      - name: Update app-service image
+        working-directory: manifests
+        run: |
+          yq -i '
+            (.images[] 
+            | select(.name == "registry.kwamekert.com/skulba-atlas")
+            | .newTag) = strenv(IMAGE_TAG)
+          ' overlays/prod/skulba/atlas/kustomization.yaml
+
+      - name: Commit and push manifest update
+        working-directory: manifests
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add overlays/prod/skulba/atlas/kustomization.yaml
+          git diff --cached --quiet || \
+            git commit -m "Deploy skulba-atlas ${GITHUB_SHA}"
+          git push origin main

@@ -6,6 +6,7 @@ export interface Tenant {
     phone: string;
     address: string;
     status: string;
+    price: number;
 }
 
 export interface TenantDetailsDTO {
@@ -18,6 +19,7 @@ export interface TenantDetailsDTO {
     subscriptionPlanID: number;
     tenantName: string;
     tenantEmail: string;
+    price: number;
     tenantPhoneNumber: string;
     trialStartsAt: string;
     trialEndsAt: string;
@@ -28,10 +30,11 @@ export interface TenantDetailsDTO {
 
 export interface TenantSubscriptionDTO {
     tenantId: number;
-    subscriptionPlanId: number;
-    trialStartsAt: string;
-    trialEndsAt: string;
-    subscriptionStartsAt: string;
-    subscriptionEndsAt: string;
-    nextBillingDate: string;
+    subscriptionPlanID: number;
+    subscriptionStartsAt: Date;
+    subscriptionEndsAt: Date;
+    nextBillingDate: Date;
+    trialStartsAt?: Date;
+    trialEndsAt?: Date;
+    status: string;
 }

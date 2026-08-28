@@ -62,6 +62,11 @@ const routes: Routes = [
         loadChildren: () =>
           import('./pages/payroll/payroll.module').then((m) => m.PayrollModule),
       },
+      {
+        path: 'invoices',
+        loadChildren: () =>
+          import('./pages/invoices/invoices.module').then((m) => m.InvoicesModule),
+      },
     ],
   },
   {
