@@ -30,10 +30,11 @@ export interface TenantDetailsDTO {
 
 export interface TenantSubscriptionDTO {
     tenantId: number;
-    subscriptionPlanId: number;
-    trialStartsAt: string;
-    trialEndsAt: string;
-    subscriptionStartsAt: string;
-    subscriptionEndsAt: string;
-    nextBillingDate: string;
+    subscriptionPlanID: number;
+    subscriptionStartsAt: Date;
+    subscriptionEndsAt: Date;
+    nextBillingDate: Date;
+    trialStartsAt?: Date;
+    trialEndsAt?: Date;
+    status: string;
 }
